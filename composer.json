@@ -1,5 +1,5 @@
 {
-  "name": "arrilot/bitrix-models",
+  "name": "ge1i0n/bitrix-models",
   "license": "MIT",
   "keywords": [
     "bitrix",
@@ -11,7 +11,7 @@
       "email": "nekrasov.ilya90@gmail.com"
     }
   ],
-  "homepage": "https://github.com/Arrilot/bitrix-models",
+  "homepage": "https://github.com/ge1i0n/bitrix-models",
   "require": {
     "php": ">=7.1",
     "illuminate/support": "^6.0",
