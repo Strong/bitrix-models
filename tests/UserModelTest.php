@@ -10,12 +10,12 @@ use Mockery as m;
 
 class UserModelTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         TestUser::$bxObject = m::mock('obj');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         TestUser::destroyObject();
         m::close();
@@ -39,7 +39,7 @@ class UserModelTest extends TestCase
     {
         $GLOBALS['USER'] = new BxUserWithAuth();
         global $USER;
-        
+
         $this->mockLoadCurrentUserMethods();
 
         $user = TestUser::freshCurrent();
@@ -74,7 +74,7 @@ class UserModelTest extends TestCase
     public function testIsCurrent()
     {
         $GLOBALS['USER'] = new BxUserWithAuth();
-    
+
         $this->mockLoadCurrentUserMethods();
 
         $user = TestUser::freshCurrent();
@@ -231,24 +231,24 @@ class UserModelTest extends TestCase
         $this->assertSame(['GROUP_ID' => [1, 2]], $user->fields);
         $this->assertSame([1, 2], $user->getGroups());
     }
-    
+
     protected function mockLoadCurrentUserMethods()
     {
         $bxObject = m::mock('obj');
         $bxObject->shouldReceive('getList')->withAnyArgs()->once()->andReturn(m::self());
         $bxObject->shouldReceive('Fetch')->twice()->andReturn(['ID' => 1, 'NAME' => 'John Doe', 'GROUP_ID' => [1, 2, 3]], false);
-    
+
         TestUser::$bxObject = $bxObject;
     }
-    
+
     public function testItCanWorkAsAStartingPointForAQuery()
     {
         $this->assertInstanceOf(UserQuery::class, TestUser::query());
     }
-    
+
     public function testItCanWorkAsAStaticProxy()
     {
-        $this->assertInstanceOf(UserQuery::class, TestUser::filter(['ACTIVE'=> 'Y']));
+        $this->assertInstanceOf(UserQuery::class, TestUser::filter(['ACTIVE' => 'Y']));
         $this->assertInstanceOf(UserQuery::class, TestUser::select('ID'));
         $this->assertInstanceOf(UserQuery::class, TestUser::take(15));
         $this->assertInstanceOf(UserQuery::class, TestUser::forPage(1, 22));

@@ -22,13 +22,13 @@ class D7ModelTest extends TestCase
         $this->assertSame(1, $element->id);
         $this->assertSame($fields, $element->fields);
     }
-    
+
     public function testMultipleInitialization()
     {
         // 1
         $element = new TestD7Element(1);
         $this->assertSame(1, $element->id);
-    
+
         $fields = [
             'UF_EMAIL' => 'John',
             'UF_IMAGE_ID' => '1',
@@ -36,11 +36,11 @@ class D7ModelTest extends TestCase
         $element = new TestD7Element(1, $fields);
         $this->assertSame(1, $element->id);
         $this->assertSame($fields, $element->fields);
-        
+
         // 2
         $element2 = new TestD7Element2(1);
         $this->assertSame(1, $element2->id);
-    
+
         $fields = [
             'UF_EMAIL' => 'John',
             'UF_IMAGE_ID' => '1',
@@ -49,7 +49,7 @@ class D7ModelTest extends TestCase
         $this->assertSame(1, $element2->id);
         $this->assertSame($fields, $element2->fields);
 
-//        dd([TestD7Element::cachedTableClass(), TestD7Element2::cachedTableClass()]);
+        //        dd([TestD7Element::cachedTableClass(), TestD7Element2::cachedTableClass()]);
         $this->assertTrue(TestD7Element::cachedTableClass() !== TestD7Element2::cachedTableClass());
         $this->assertTrue(TestD7Element::instantiateAdapter() !== TestD7Element2::instantiateAdapter());
     }
@@ -59,7 +59,7 @@ class D7ModelTest extends TestCase
         $resultObject = new TestD7ResultObject();
         $adapter = m::mock('adapter');
         $adapter->shouldReceive('add')->once()->with(['UF_NAME' => 'Jane', 'UF_AGE' => '18'])->andReturn($resultObject);
-        
+
         TestD7Element::setAdapter($adapter);
         $element = TestD7Element::create(['UF_NAME' => 'Jane', 'UF_AGE' => '18']);
         $this->assertEquals($element->id, 1);
@@ -71,14 +71,14 @@ class D7ModelTest extends TestCase
         $resultObject = new TestD7ResultObject();
         $adapter = m::mock('adapter');
         $adapter->shouldReceive('update')->once()->with(1, ['UF_NAME' => 'Jane'])->andReturn($resultObject);
-    
+
         $element = new TestD7Element(1);
         TestD7Element::setAdapter($adapter);
 
-    
+
         $this->assertTrue($element->update(['UF_NAME' => 'Jane']));
     }
-    
+
     public function testDelete()
     {
         // normal
@@ -91,9 +91,9 @@ class D7ModelTest extends TestCase
         $element::setAdapter($adapter);
         $element->shouldReceive('onBeforeDelete')->once()->andReturn(null);
         $element->shouldReceive('onAfterDelete')->once()->with(true);
-        
+
         $this->assertTrue($element->delete());
-        
+
         // cancelled
         $element = m::mock('Arrilot\Tests\BitrixModels\Stubs\TestD7Element[onAfterDelete, onBeforeDelete]', [1])
             ->shouldAllowMockingProtectedMethods();

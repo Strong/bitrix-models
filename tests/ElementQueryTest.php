@@ -9,7 +9,7 @@ use Mockery as m;
 
 class ElementQueryTest extends TestCase
 {
-    public function tearDown()
+    public function tearDown(): void
     {
         m::close();
     }
@@ -214,50 +214,50 @@ class ElementQueryTest extends TestCase
         $this->assertSame(false, $query->getById(0));
     }
 
-//    public function testGetListWithFetchUsing()
-//    {
-//        $bxObject = m::mock('obj');
-//        $bxObject->shouldReceive('getList')
-//            ->with(['SORT' => 'ASC'], ['ACTIVE' => 'N', 'IBLOCK_ID' => 1], false, false, ['ID', 'NAME', 'PROPERTY_GUID', 'IBLOCK_ID'])
-//            ->once()
-//            ->andReturn(m::self());
-//        $bxObject->shouldReceive('Fetch')->andReturn(
-//            ['ID' => 1, 'NAME' => 'foo', 'PROPERTY_GUID_VALUE' => 'foo'],
-//            ['ID' => 2, 'NAME' => 'bar', 'PROPERTY_GUID_VALUE' => ''],
-//            false
-//        );
-//
-//        TestElement::$bxObject = $bxObject;
-//        $query = $this->createQuery($bxObject);
-//        $items = $query->filter(['ACTIVE' => 'N'])->select('ID', 'NAME', 'PROPERTY_GUID')->fetchUsing('Fetch')->getList();
-//
-//        $expected = [
-//            1 => ['ID' => 1, 'NAME' => 'foo', 'PROPERTY_GUID_VALUE' => 'foo'],
-//            2 => ['ID' => 2, 'NAME' => 'bar', 'PROPERTY_GUID_VALUE' => ''],
-//        ];
-//        foreach ($items as $k => $item) {
-//            $this->assertSame($expected[$k], $item->fields);
-//        }
-//    }
-//
-//    public function testGetListWithFetchUsingAndNoProps()
-//    {
-//        $bxObject = m::mock('obj');
-//        $bxObject->shouldReceive('getList')->with(['SORT'    => 'ASC'], ['ACTIVE' => 'N', 'IBLOCK_ID' => 1], false, false, ['ID', 'NAME', 'IBLOCK_ID'])->once()->andReturn(m::self());
-//        $bxObject->shouldReceive('Fetch')->andReturn(['ID' => 1, 'NAME' => 'foo'], ['ID' => 2, 'NAME' => 'bar'], false);
-//
-//        TestElement::$bxObject = $bxObject;
-//        $query = $this->createQuery($bxObject);
-//        $items = $query->filter(['ACTIVE' => 'N'])->select('ID', 'NAME')->fetchUsing('Fetch')->getList();
-//
-//        $expected = [
-//            1 => ['ID' => 1, 'NAME' => 'foo'],
-//            2 => ['ID' => 2, 'NAME' => 'bar'],
-//        ];
-//        foreach ($items as $k => $item) {
-//            $this->assertSame($expected[$k], $item->fields);
-//        }
-//    }
+    //    public function testGetListWithFetchUsing()
+    //    {
+    //        $bxObject = m::mock('obj');
+    //        $bxObject->shouldReceive('getList')
+    //            ->with(['SORT' => 'ASC'], ['ACTIVE' => 'N', 'IBLOCK_ID' => 1], false, false, ['ID', 'NAME', 'PROPERTY_GUID', 'IBLOCK_ID'])
+    //            ->once()
+    //            ->andReturn(m::self());
+    //        $bxObject->shouldReceive('Fetch')->andReturn(
+    //            ['ID' => 1, 'NAME' => 'foo', 'PROPERTY_GUID_VALUE' => 'foo'],
+    //            ['ID' => 2, 'NAME' => 'bar', 'PROPERTY_GUID_VALUE' => ''],
+    //            false
+    //        );
+    //
+    //        TestElement::$bxObject = $bxObject;
+    //        $query = $this->createQuery($bxObject);
+    //        $items = $query->filter(['ACTIVE' => 'N'])->select('ID', 'NAME', 'PROPERTY_GUID')->fetchUsing('Fetch')->getList();
+    //
+    //        $expected = [
+    //            1 => ['ID' => 1, 'NAME' => 'foo', 'PROPERTY_GUID_VALUE' => 'foo'],
+    //            2 => ['ID' => 2, 'NAME' => 'bar', 'PROPERTY_GUID_VALUE' => ''],
+    //        ];
+    //        foreach ($items as $k => $item) {
+    //            $this->assertSame($expected[$k], $item->fields);
+    //        }
+    //    }
+    //
+    //    public function testGetListWithFetchUsingAndNoProps()
+    //    {
+    //        $bxObject = m::mock('obj');
+    //        $bxObject->shouldReceive('getList')->with(['SORT'    => 'ASC'], ['ACTIVE' => 'N', 'IBLOCK_ID' => 1], false, false, ['ID', 'NAME', 'IBLOCK_ID'])->once()->andReturn(m::self());
+    //        $bxObject->shouldReceive('Fetch')->andReturn(['ID' => 1, 'NAME' => 'foo'], ['ID' => 2, 'NAME' => 'bar'], false);
+    //
+    //        TestElement::$bxObject = $bxObject;
+    //        $query = $this->createQuery($bxObject);
+    //        $items = $query->filter(['ACTIVE' => 'N'])->select('ID', 'NAME')->fetchUsing('Fetch')->getList();
+    //
+    //        $expected = [
+    //            1 => ['ID' => 1, 'NAME' => 'foo'],
+    //            2 => ['ID' => 2, 'NAME' => 'bar'],
+    //        ];
+    //        foreach ($items as $k => $item) {
+    //            $this->assertSame($expected[$k], $item->fields);
+    //        }
+    //    }
 
     public function testLimitAndPage()
     {

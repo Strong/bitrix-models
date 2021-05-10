@@ -8,7 +8,7 @@ class TestD7ResultObject
     {
         return true;
     }
-    
+
     public function getId()
     {
         return 1;

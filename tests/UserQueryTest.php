@@ -8,7 +8,7 @@ use Mockery as m;
 
 class UserQueryTest extends TestCase
 {
-    public function tearDown()
+    public function tearDown(): void
     {
         m::close();
     }
@@ -91,10 +91,10 @@ class UserQueryTest extends TestCase
         $bxObject->shouldReceive('getList')->with(
             ['SORT' => 'ASC'],
             false,
-            ['LOGIN_EQUAL_EXACT' => 'JohnDoe' ],
+            ['LOGIN_EQUAL_EXACT' => 'JohnDoe'],
             [
                 'SELECT'     => false,
-                'NAV_PARAMS' => ['nPageSize' => 1 ],
+                'NAV_PARAMS' => ['nPageSize' => 1],
                 'FIELDS'     => ['ID', 'NAME'],
             ]
         )->once()->andReturn(m::self());
@@ -113,10 +113,10 @@ class UserQueryTest extends TestCase
         $bxObject->shouldReceive('getList')->with(
             ['SORT' => 'ASC'],
             false,
-            ['EMAIL' => 'john@example.com' ],
+            ['EMAIL' => 'john@example.com'],
             [
                 'SELECT'     => false,
-                'NAV_PARAMS' => ['nPageSize' => 1 ],
+                'NAV_PARAMS' => ['nPageSize' => 1],
                 'FIELDS'     => ['ID', 'NAME'],
             ]
         )->once()->andReturn(m::self());
