@@ -91,7 +91,7 @@ class SectionQuery extends OldCoreQuery
         $navigation = $this->navigation;
         $keyBy = $this->keyBy;
 
-        $callback = function() use ($sort, $filter, $countElements, $select, $navigation) {
+        $callback = function () use ($sort, $filter, $countElements, $select, $navigation) {
             $sections = [];
             $rsSections = $this->bxObject->getList($sort, $filter, $countElements, $select, $navigation);
             while ($arSection = $this->performFetchUsingSelectedMethod($rsSections)) {
@@ -100,9 +100,9 @@ class SectionQuery extends OldCoreQuery
                 // Проверим это еще раз, и если есть проблемы то пофиксим.
                 foreach ($arSection as $field => $value) {
                     if (
-                    is_string($value)
-                    && Helpers::startsWith($value, 'a:')
-                    && (Helpers::startsWith($field, 'UF_') || Helpers::startsWith($field, '~UF_'))
+                        is_string($value)
+                        && Helpers::startsWith($value, 'a:')
+                        && (Helpers::startsWith($field, 'UF_') || Helpers::startsWith($field, '~UF_'))
                     ) {
                         $unserializedValue = @unserialize($value);
                         $arSection[$field] = $unserializedValue === false ? $value : $unserializedValue;
@@ -161,7 +161,7 @@ class SectionQuery extends OldCoreQuery
 
         $queryType = 'SectionQuery::count';
         $filter = $this->normalizeFilter();
-        $callback = function() use ($filter) {
+        $callback = function () use ($filter) {
             return (int) $this->bxObject->getCount($filter);
         };
 

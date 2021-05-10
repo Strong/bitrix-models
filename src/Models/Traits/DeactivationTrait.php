@@ -33,7 +33,7 @@ trait DeactivationTrait
             ? $query->filter(['==UF_DEACTIVATED_AT' => null])
             : $query->whereNull('UF_DEACTIVATED_AT');
     }
-    
+
     /**
      * @param $query
      * @return mixed
@@ -44,7 +44,7 @@ trait DeactivationTrait
             ? $query->filter(['!==UF_DEACTIVATED_AT' => null])
             : $query->whereNotNull('UF_DEACTIVATED_AT');
     }
-    
+
     /**
      * @return $this
      */
@@ -54,7 +54,7 @@ trait DeactivationTrait
 
         return $this;
     }
-    
+
     /**
      * @return $this
      */

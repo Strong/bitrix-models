@@ -19,7 +19,7 @@ class D7Adapter
      * @var string
      */
     protected $className;
-    
+
     /**
      * D7Adapter constructor.
      *

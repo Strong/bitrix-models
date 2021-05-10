@@ -83,7 +83,7 @@ abstract class BitrixModel extends BaseBitrixModel
     protected static function internalCreate($fields)
     {
         $model = new static(null, $fields);
-        
+
         if ($model->onBeforeSave() === false || $model->onBeforeCreate() === false) {
             return false;
         }
@@ -91,7 +91,7 @@ abstract class BitrixModel extends BaseBitrixModel
         $bxObject = static::instantiateObject();
         $id = static::internalDirectCreate($bxObject, $model->fields);
         $model->setId($id);
-        
+
         $result = $id ? true : false;
 
         $model->setEventErrorsOnFail($result, $bxObject);
@@ -129,7 +129,7 @@ abstract class BitrixModel extends BaseBitrixModel
 
         return $result;
     }
-    
+
     /**
      * Save model to database.
      *

@@ -98,7 +98,7 @@ class SectionModel extends BitrixModel
         if (!$id) {
             throw new LogicException('You must set $iblockId property or override iblockId() method');
         }
-        
+
         return $id;
     }
 

@@ -105,17 +105,17 @@ class UserQuery extends OldCoreQuery
         $selectGroups = $this->groupsMustBeSelected();
         $keyBy = $this->keyBy;
 
-        $callback = function() use ($sort, $filter, $params, $selectGroups){
+        $callback = function () use ($sort, $filter, $params, $selectGroups) {
             $users = [];
             $rsUsers = $this->bxObject->getList($sort, $sortOrder = false, $filter, $params);
             while ($arUser = $this->performFetchUsingSelectedMethod($rsUsers)) {
                 if ($selectGroups) {
                     $arUser['GROUP_ID'] = $this->bxObject->getUserGroup($arUser['ID']);
                 }
-        
+
                 $this->addItemToResultsUsingKeyBy($users, new $this->modelName($arUser['ID'], $arUser));
             }
-    
+
             return new Collection($users);
         };
 
@@ -163,7 +163,7 @@ class UserQuery extends OldCoreQuery
 
         $queryType = 'UserQuery::count';
         $filter = $this->normalizeFilter();
-        $callback = function() use ($filter) {
+        $callback = function () use ($filter) {
             return (int) $this->bxObject->getList($order = 'ID', $by = 'ASC', $filter, [
                 'NAV_PARAMS' => [
                     'nTopCount' => 0,
@@ -224,7 +224,7 @@ class UserQuery extends OldCoreQuery
     {
         return preg_grep('/^(UF_+)/', $this->select);
     }
-    
+
     protected function prepareMultiFilter(&$key, &$value)
     {
         $value = join(' | ', $value);

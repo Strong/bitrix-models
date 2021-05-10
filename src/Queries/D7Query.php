@@ -80,7 +80,7 @@ class D7Query extends BaseQuery
 
         return $this->handleCacheIfNeeded(compact('className', 'filter', 'queryType'), $callback);
     }
-    
+
     /**
      * Get list of items.
      *
@@ -128,7 +128,7 @@ class D7Query extends BaseQuery
     public function limit($value)
     {
         $this->limit = $value;
-        
+
         return $this;
     }
 
@@ -155,7 +155,7 @@ class D7Query extends BaseQuery
     {
         return $this->offset((int) $this->limit * ($num - 1));
     }
-    
+
     /**
      * Setter for offset.
      *
@@ -195,7 +195,7 @@ class D7Query extends BaseQuery
 
         return $this;
     }
-    
+
     /**
      * For testing.
      *
