@@ -1,13 +1,6 @@
-[![Latest Stable Version](https://poser.pugx.org/arrilot/bitrix-models/v/stable.svg)](https://packagist.org/packages/arrilot/bitrix-models/)
-[![Total Downloads](https://img.shields.io/packagist/dt/arrilot/bitrix-models.svg?style=flat)](https://packagist.org/packages/Arrilot/bitrix-models)
-[![Build Status](https://img.shields.io/travis/arrilot/bitrix-models/master.svg?style=flat)](https://travis-ci.org/arrilot/bitrix-models)
-[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/arrilot/bitrix-models/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/arrilot/bitrix-models/)
-
-
-# Данный пакет больше активно не поддерживается
-
-Причина - мы больше не используем Битрикс в своих проектах.
-Если вам интересен этот проект и вы хотите заняться его поддержкой - форкните его и создайте Issue в данном репозитории чтобы мы поместили здесь ссылку на форк.
+[![Latest Stable Version](https://poser.pugx.org/ge1i0n/bitrix-models/v/stable.svg)](https://packagist.org/packages/ge1i0n/bitrix-models/)
+[![Total Downloads](https://img.shields.io/packagist/dt/ge1i0n/bitrix-models.svg?style=flat)](https://packagist.org/packages/ge1i0n/bitrix-models)
+[![Build Status](https://img.shields.io/travis/ge1i0n/bitrix-models/master.svg?style=flat)](https://travis-ci.org/ge1i0n/bitrix-models)
 
 
 # Bitrix models
@@ -23,7 +16,7 @@
 
 ## Установка
 
-1. ```composer require arrilot/bitrix-models```
+1. ```composer require ge1i0n/bitrix-models```
 2. Регистрируем пакет в `init.php` - `Arrilot\BitrixModels\ServiceProvider::register();`
 
 ## Использование моделей Bitrix
@@ -81,7 +74,7 @@ $product = Product::create($fields);
 Нужно это из-за того, что форматы полей в CIblockElement::Add() и CIblockElement::GetList() не совпадают на 100%
 Делается это так: 
 ```php
-$product = Product::create($fields)
+$product = Product::create($fields);
 $product->refresh();
 ```
 
@@ -227,7 +220,7 @@ $products = Product::select('ID')->getList();
 2. Можно переключить для одного единственного запроса.
 
     ```php
-         Products::query()->filter(['ACTIVE' => 'Y'])->fetchUsing('GetNext')->getList()`
+         Products::query()->filter(['ACTIVE' => 'Y'])->fetchUsing('GetNext')->getList();
          // вместо строки `'GetNext'` можно как и в первом случае использовать массив.
     ```
 
@@ -632,7 +625,7 @@ foreach($products as $product) {
 ```php
 ->with([
     'questions' => function ($query) {
-        $query->filter(['ACTIVE' => 'Y'])
+        $query->filter(['ACTIVE' => 'Y']);
     },
     'questions.answers'
 ])
