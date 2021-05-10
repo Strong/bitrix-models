@@ -61,7 +61,6 @@ class RelationTest extends TestCase
         $this->assertCount(2, $product->elements);
         $this->assertEquals(['ID' => 1, 'NAME' => 'Название'], $product->elements[1]->fields);
         $this->assertEquals(['ID' => 2, 'NAME' => 'Название 2'], $product->elements[2]->fields);
-
     }
 
     public function testWith()

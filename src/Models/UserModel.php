@@ -266,7 +266,7 @@ class UserModel extends BitrixModel
      */
     public function isGuest()
     {
-        return ! $this->isAuthorized();
+        return !$this->isAuthorized();
     }
 
     /**
@@ -308,7 +308,7 @@ class UserModel extends BitrixModel
     {
         $groups = $this->getGroups();
 
-        if(($key = array_search($old, $groups)) !== false) {
+        if (($key = array_search($old, $groups)) !== false) {
             unset($groups[$key]);
         }
 

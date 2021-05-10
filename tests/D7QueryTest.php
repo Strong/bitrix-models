@@ -8,7 +8,7 @@ use Mockery as m;
 
 class D7QueryTest extends TestCase
 {
-    public function tearDown()
+    public function tearDown(): void
     {
         m::close();
     }
@@ -43,7 +43,7 @@ class D7QueryTest extends TestCase
         $count = $query->filter(['>ID' => 5])->count();
         $this->assertSame(3, $count);
     }
-    
+
     public function testGetList()
     {
         $adapter = m::mock('D7Adapter');
@@ -62,7 +62,7 @@ class D7QueryTest extends TestCase
 
         $query = $this->createQuery($adapter);
         $items = $query->sort(['ID' => 'ASC'])->filter(['UF_NAME' => 'John'])->select(['ID', 'UF_NAME'])->getList();
-        
+
         $expected = [
             1 => ['ID' => 1, 'UF_NAME' => 'John Doe'],
             2 => ['ID' => 2, 'UF_NAME' => 'John Doe 2'],

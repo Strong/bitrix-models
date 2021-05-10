@@ -158,7 +158,7 @@ class ElementQuery extends OldCoreQuery
         $keyBy = $this->keyBy;
         list($select, $chunkQuery) = $this->multiplySelectForMaxJoinsRestrictionIfNeeded($select);
 
-        $callback = function() use ($sort, $filter, $groupBy, $navigation, $select, $chunkQuery) {
+        $callback = function () use ($sort, $filter, $groupBy, $navigation, $select, $chunkQuery) {
             if ($chunkQuery) {
                 $itemsChunks = [];
                 foreach ($select as $chunkIndex => $selectForChunk) {
@@ -233,30 +233,30 @@ class ElementQuery extends OldCoreQuery
         return $this->handleCacheIfNeeded(compact('filter', 'queryType'), $callback);
     }
 
-//    /**
-//     * Normalize properties's format converting it to 'PROPERTY_"CODE"_VALUE'.
-//     *
-//     * @param array $fields
-//     *
-//     * @return null
-//     */
-//    protected function normalizePropertyResultFormat(&$fields)
-//    {
-//        if (empty($fields['PROPERTIES'])) {
-//            return;
-//        }
-//
-//        foreach ($fields['PROPERTIES'] as $code => $prop) {
-//            $fields['PROPERTY_'.$code.'_VALUE'] = $prop['VALUE'];
-//            $fields['~PROPERTY_'.$code.'_VALUE'] = $prop['~VALUE'];
-//            $fields['PROPERTY_'.$code.'_DESCRIPTION'] = $prop['DESCRIPTION'];
-//            $fields['~PROPERTY_'.$code.'_DESCRIPTION'] = $prop['~DESCRIPTION'];
-//            $fields['PROPERTY_'.$code.'_VALUE_ID'] = $prop['PROPERTY_VALUE_ID'];
-//            if (isset($prop['VALUE_ENUM_ID'])) {
-//                $fields['PROPERTY_'.$code.'_ENUM_ID'] = $prop['VALUE_ENUM_ID'];
-//            }
-//        }
-//    }
+    //    /**
+    //     * Normalize properties's format converting it to 'PROPERTY_"CODE"_VALUE'.
+    //     *
+    //     * @param array $fields
+    //     *
+    //     * @return null
+    //     */
+    //    protected function normalizePropertyResultFormat(&$fields)
+    //    {
+    //        if (empty($fields['PROPERTIES'])) {
+    //            return;
+    //        }
+    //
+    //        foreach ($fields['PROPERTIES'] as $code => $prop) {
+    //            $fields['PROPERTY_'.$code.'_VALUE'] = $prop['VALUE'];
+    //            $fields['~PROPERTY_'.$code.'_VALUE'] = $prop['~VALUE'];
+    //            $fields['PROPERTY_'.$code.'_DESCRIPTION'] = $prop['DESCRIPTION'];
+    //            $fields['~PROPERTY_'.$code.'_DESCRIPTION'] = $prop['~DESCRIPTION'];
+    //            $fields['PROPERTY_'.$code.'_VALUE_ID'] = $prop['PROPERTY_VALUE_ID'];
+    //            if (isset($prop['VALUE_ENUM_ID'])) {
+    //                $fields['PROPERTY_'.$code.'_ENUM_ID'] = $prop['VALUE_ENUM_ID'];
+    //            }
+    //        }
+    //    }
 
     /**
      * Normalize filter before sending it to getList.
@@ -299,12 +299,12 @@ class ElementQuery extends OldCoreQuery
         $props = [];
         $rsProps = static::$cIblockObject->GetProperties($this->iblockId);
         while ($prop = $rsProps->Fetch()) {
-            $props[] = 'PROPERTY_'.$prop['CODE'];
+            $props[] = 'PROPERTY_' . $prop['CODE'];
         }
 
         return $props;
     }
-    
+
     protected function multiplySelectForMaxJoinsRestrictionIfNeeded($select)
     {
         if (!$this->propsMustBeSelected()) {
@@ -327,7 +327,7 @@ class ElementQuery extends OldCoreQuery
 
         return [$multipleSelect, true];
     }
-    
+
     protected function mergeChunks($chunks)
     {
         $items = [];

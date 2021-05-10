@@ -27,7 +27,7 @@ abstract class OldCoreQuery extends BaseQuery
     public function __construct($bxObject, $modelName)
     {
         parent::__construct($bxObject, $modelName);
-        
+
         $this->fetchUsing($modelName::$fetchUsing);
     }
 

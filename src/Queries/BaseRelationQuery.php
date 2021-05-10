@@ -197,7 +197,7 @@ trait BaseRelationQuery
         $this->filterByModels($primaryModels);
 
         $models = $this->getList();
-    
+
         Helpers::assocModels($primaryModels, $models, $this->foreignKey, $this->localKey, $name, $this->multiple);
 
         return $models;

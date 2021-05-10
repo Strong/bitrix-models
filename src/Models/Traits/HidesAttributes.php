@@ -10,14 +10,14 @@ trait HidesAttributes
      * @var array
      */
     protected $hidden = [];
-    
+
     /**
      * The attributes that should be visible in serialization.
      *
      * @var array
      */
     protected $visible = [];
-    
+
     /**
      * Get the hidden attributes for the model.
      *
@@ -27,7 +27,7 @@ trait HidesAttributes
     {
         return $this->hidden;
     }
-    
+
     /**
      * Set the hidden attributes for the model.
      *
@@ -37,10 +37,10 @@ trait HidesAttributes
     public function setHidden(array $hidden)
     {
         $this->hidden = $hidden;
-        
+
         return $this;
     }
-    
+
     /**
      * Add hidden attributes for the model.
      *
@@ -50,10 +50,11 @@ trait HidesAttributes
     public function addHidden($attributes = null)
     {
         $this->hidden = array_merge(
-            $this->hidden, is_array($attributes) ? $attributes : func_get_args()
+            $this->hidden,
+            is_array($attributes) ? $attributes : func_get_args()
         );
     }
-    
+
     /**
      * Get the visible attributes for the model.
      *
@@ -63,7 +64,7 @@ trait HidesAttributes
     {
         return $this->visible;
     }
-    
+
     /**
      * Set the visible attributes for the model.
      *
@@ -73,10 +74,10 @@ trait HidesAttributes
     public function setVisible(array $visible)
     {
         $this->visible = $visible;
-        
+
         return $this;
     }
-    
+
     /**
      * Add visible attributes for the model.
      *
@@ -86,10 +87,11 @@ trait HidesAttributes
     public function addVisible($attributes = null)
     {
         $this->visible = array_merge(
-            $this->visible, is_array($attributes) ? $attributes : func_get_args()
+            $this->visible,
+            is_array($attributes) ? $attributes : func_get_args()
         );
     }
-    
+
     /**
      * Make the given, typically hidden, attributes visible.
      *
@@ -99,14 +101,14 @@ trait HidesAttributes
     public function makeVisible($attributes)
     {
         $this->hidden = array_diff($this->hidden, (array) $attributes);
-        
-        if (! empty($this->visible)) {
+
+        if (!empty($this->visible)) {
             $this->addVisible($attributes);
         }
-        
+
         return $this;
     }
-    
+
     /**
      * Make the given, typically visible, attributes hidden.
      *
@@ -116,11 +118,11 @@ trait HidesAttributes
     public function makeHidden($attributes)
     {
         $attributes = (array) $attributes;
-        
+
         $this->visible = array_diff($this->visible, $attributes);
-        
+
         $this->hidden = array_unique(array_merge($this->hidden, $attributes));
-        
+
         return $this;
     }
 }

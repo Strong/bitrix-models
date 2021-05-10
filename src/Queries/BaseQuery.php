@@ -512,7 +512,7 @@ abstract class BaseQuery
      */
     protected function rememberInCache($key, $minutes, Closure $callback)
     {
-        $minutes = (double) $minutes;
+        $minutes = (float) $minutes;
         if ($minutes <= 0) {
             return $callback();
         }
@@ -556,10 +556,10 @@ abstract class BaseQuery
      */
     public function __call($method, $parameters)
     {
-        if (method_exists($this->model, 'scope'.$method)) {
+        if (method_exists($this->model, 'scope' . $method)) {
             array_unshift($parameters, $this);
 
-            $query = call_user_func_array([$this->model, 'scope'.$method], $parameters);
+            $query = call_user_func_array([$this->model, 'scope' . $method], $parameters);
 
             if ($query === false) {
                 $this->stopQuery();
@@ -572,9 +572,8 @@ abstract class BaseQuery
 
         throw new BadMethodCallException("Call to undefined method {$className}::{$method}()");
     }
-    
+
     protected function prepareMultiFilter(&$key, &$value)
     {
-    
     }
 }

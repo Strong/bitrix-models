@@ -25,64 +25,66 @@ class UserQuery extends OldCoreQuery
      */
     protected $standardFields = [
         'ID',
-        'PERSONAL_WWW',
-        'PERSONAL_ZIP',
         'IS_ONLINE',
-        'ACTIVE',
-        'PERSONAL_ICQ',
-        'PERSONAL_COUNTRY',
-        'WORK_CITY',
-        'LAST_LOGIN',
-        'PERSONAL_GENDER',
-        'PERSONAL_NOTES',
-        'WORK_STATE',
-        'LOGIN',
-        'PERSONAL_PHOTO',
-        'WORK_COMPANY',
-        'WORK_ZIP',
-        'EMAIL',
-        'PERSONAL_PHONE',
-        'WORK_DEPARTMENT',
-        'WORK_COUNTRY',
-        'NAME',
-        'PERSONAL_FAX',
-        'WORK_POSITION',
-        'WORK_PROFILE',
-        'LAST_NAME',
-        'PERSONAL_MOBILE',
-        'WORK_WWW',
-        'WORK_NOTES',
-        'SECOND_NAME',
-        'PERSONAL_PAGER',
-        'WORK_PHONE',
-        'ADMIN_NOTES',
-        'TIMESTAMP_X',
-        'PERSONAL',
-        'STREET',
-        'WORK_FAX',
-        'XML_ID',
-        'PERSONAL_BIRTHDAY',
-        'PERSONAL_MAILBOX',
-        'WORK_PAGER',
-        'LAST_NAME',
-        'DATE_REGISTER',
-        'PERSONAL_CITY',
-        'WORK_STREET',
-        'SECOND_NAME',
-        'PERSONAL_PROFESSION',
-        'PERSONAL_STATE',
-        'WORK_MAILBOX',
-        'STORED_HASH',
-        'CHECKWORD_TIME',
-        'EXTERNAL_AUTH_ID',
-        'CONFIRM_CODE',
-        'LOGIN_ATTEMPTS',
         'LAST_ACTIVITY_DATE',
         'AUTO_TIME_ZONE',
         'TIME_ZONE',
-        'PASSWORD',
+        'CONFIRM_CODE',
+        'STORED_HASH',
+        'EXTERNAL_AUTH_ID',
+        'LOGIN_ATTEMPTS',
         'CHECKWORD',
+        'CHECKWORD_TIME',
+        'DATE_REGISTER',
+        'TIMESTAMP_X',
+        'LAST_LOGIN',
+        'ACTIVE',
+        'BLOCKED',
+        'TITLE',
+        'NAME',
+        'LAST_NAME',
+        'SECOND_NAME',
+        'EMAIL',
+        'LOGIN',
+        'PHONE_NUMBER',
+        'PASSWORD',
+        'XML_ID',
         'LID',
+        'LANGUAGE_ID',
+        'PERSONAL_PROFESSION',
+        'PERSONAL_WWW',
+        'PERSONAL_ICQ',
+        'PERSONAL_GENDER',
+        'PERSONAL_BIRTHDAY',
+        'PERSONAL_PHOTO',
+        'PERSONAL_PHONE',
+        'PERSONAL_FAX',
+        'PERSONAL_MOBILE',
+        'PERSONAL_PAGER',
+        'PERSONAL_COUNTRY',
+        'PERSONAL_STATE',
+        'PERSONAL_CITY',
+        'PERSONAL_ZIP',
+        'PERSONAL_STREET',
+        'PERSONAL_MAILBOX',
+        'PERSONAL_NOTES',
+        'WORK_COMPANY',
+        'WORK_WWW',
+        'WORK_DEPARTMENT',
+        'WORK_POSITION',
+        'WORK_PROFILE',
+        'WORK_LOGO',
+        'WORK_PHONE',
+        'WORK_FAX',
+        'WORK_PAGER',
+        'WORK_COUNTRY',
+        'WORK_STATE',
+        'WORK_CITY',
+        'WORK_ZIP',
+        'WORK_STREET',
+        'WORK_MAILBOX',
+        'WORK_NOTES',
+        'ADMIN_NOTES',
     ];
 
     /**
@@ -103,17 +105,17 @@ class UserQuery extends OldCoreQuery
         $selectGroups = $this->groupsMustBeSelected();
         $keyBy = $this->keyBy;
 
-        $callback = function() use ($sort, $filter, $params, $selectGroups){
+        $callback = function () use ($sort, $filter, $params, $selectGroups) {
             $users = [];
             $rsUsers = $this->bxObject->getList($sort, $sortOrder = false, $filter, $params);
             while ($arUser = $this->performFetchUsingSelectedMethod($rsUsers)) {
                 if ($selectGroups) {
                     $arUser['GROUP_ID'] = $this->bxObject->getUserGroup($arUser['ID']);
                 }
-        
+
                 $this->addItemToResultsUsingKeyBy($users, new $this->modelName($arUser['ID'], $arUser));
             }
-    
+
             return new Collection($users);
         };
 
@@ -161,7 +163,7 @@ class UserQuery extends OldCoreQuery
 
         $queryType = 'UserQuery::count';
         $filter = $this->normalizeFilter();
-        $callback = function() use ($filter) {
+        $callback = function () use ($filter) {
             return (int) $this->bxObject->getList($order = 'ID', $by = 'ASC', $filter, [
                 'NAV_PARAMS' => [
                     'nTopCount' => 0,
@@ -222,7 +224,7 @@ class UserQuery extends OldCoreQuery
     {
         return preg_grep('/^(UF_+)/', $this->select);
     }
-    
+
     protected function prepareMultiFilter(&$key, &$value)
     {
         $value = join(' | ', $value);

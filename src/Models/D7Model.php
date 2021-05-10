@@ -68,7 +68,7 @@ class D7Model extends BaseBitrixModel
         $this->fill($fields);
         static::instantiateAdapter();
     }
-    
+
     /**
      * Setter for adapter (for testing)
      * @param $adapter
@@ -102,7 +102,7 @@ class D7Model extends BaseBitrixModel
     {
         return new D7Query(static::instantiateAdapter(), get_called_class());
     }
-    
+
     /**
      * @return string
      * @throws LogicException
@@ -113,7 +113,7 @@ class D7Model extends BaseBitrixModel
         if (!$tableClass) {
             throw new LogicException('You must set TABLE_CLASS constant inside a model or override tableClass() method');
         }
-    
+
         return $tableClass;
     }
 
@@ -185,7 +185,7 @@ class D7Model extends BaseBitrixModel
 
         return $result;
     }
-    
+
     /**
      * Save model to database.
      *
@@ -217,7 +217,7 @@ class D7Model extends BaseBitrixModel
 
         return $result;
     }
-    
+
     /**
      * Determine whether the field should be stopped from passing to "update".
      *

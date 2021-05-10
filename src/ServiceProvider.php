@@ -85,27 +85,27 @@ class ServiceProvider
     {
         $capsule = new Capsule(self::instantiateServiceContainer());
 
-	if ($dbConfig = Configuration::getInstance()->get('bitrix-models.illuminate-database')) {
-		foreach ($dbConfig['connections'] as $name => $connection) {
-			$capsule->addConnection($connection, $name);
-		}
+        if ($dbConfig = Configuration::getInstance()->get('bitrix-models.illuminate-database')) {
+            foreach ($dbConfig['connections'] as $name => $connection) {
+                $capsule->addConnection($connection, $name);
+            }
 
-		$capsule->getDatabaseManager()->setDefaultConnection((isset($dbConfig['default'])) ? $dbConfig['default'] : 'default');
-	} else {
-		$config = self::getBitrixDbConfig();
+            $capsule->getDatabaseManager()->setDefaultConnection((isset($dbConfig['default'])) ? $dbConfig['default'] : 'default');
+        } else {
+            $config = self::getBitrixDbConfig();
 
-		$capsule->addConnection([
-			'driver' => 'mysql',
-			'host' => $config['host'],
-			'database' => $config['database'],
-			'username' => $config['login'],
-			'password' => $config['password'],
-			'charset' => 'utf8',
-			'collation' => 'utf8_unicode_ci',
-			'prefix' => '',
-			'strict' => false,
-		]);
-	}
+            $capsule->addConnection([
+                'driver' => 'mysql',
+                'host' => $config['host'],
+                'database' => $config['database'],
+                'username' => $config['login'],
+                'password' => $config['password'],
+                'charset' => 'utf8',
+                'collation' => 'utf8_unicode_ci',
+                'prefix' => '',
+                'strict' => false,
+            ]);
+        }
 
         if (class_exists(Dispatcher::class)) {
             $capsule->setEventDispatcher(new Dispatcher());
@@ -160,7 +160,7 @@ class ServiceProvider
             return;
         }
 
-        $dispatcher->listen(['eloquent.deleted: *'], function($event, $payload) {
+        $dispatcher->listen(['eloquent.deleted: *'], function ($event, $payload) {
             /** @var EloquentModel $model */
             $model = $payload[0];
             if (empty($model->multipleHighloadBlockFields)) {
@@ -170,13 +170,13 @@ class ServiceProvider
             $modelTable = $model->getTable();
             foreach ($model->multipleHighloadBlockFields as $multipleHighloadBlockField) {
                 if (!empty($model['ID'])) {
-                    $tableName = $modelTable.'_'.strtolower($multipleHighloadBlockField);
+                    $tableName = $modelTable . '_' . strtolower($multipleHighloadBlockField);
                     DB::table($tableName)->where('ID', $model['ID'])->delete();
                 }
             }
         });
 
-        $dispatcher->listen(['eloquent.updated: *', 'eloquent.created: *'], function($event, $payload) {
+        $dispatcher->listen(['eloquent.updated: *', 'eloquent.created: *'], function ($event, $payload) {
             /** @var EloquentModel $model */
             $model = $payload[0];
             if (empty($model->multipleHighloadBlockFields)) {
@@ -187,7 +187,7 @@ class ServiceProvider
             $modelTable = $model->getTable();
             foreach ($model->multipleHighloadBlockFields as $multipleHighloadBlockField) {
                 if (isset($dirty[$multipleHighloadBlockField]) && !empty($model['ID'])) {
-                    $tableName = $modelTable.'_'.strtolower($multipleHighloadBlockField);
+                    $tableName = $modelTable . '_' . strtolower($multipleHighloadBlockField);
 
                     if (substr($event, 0, 16) === 'eloquent.updated') {
                         DB::table($tableName)->where('ID', $model['ID'])->delete();

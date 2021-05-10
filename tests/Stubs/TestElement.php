@@ -15,19 +15,19 @@ use Illuminate\Support\Collection;
 class TestElement extends ElementModel
 {
     protected $appends = ['ACCESSOR_THREE', 'PROPERTY_LANG_ACCESSOR_ONE'];
-    
+
     protected $languageAccessors = ['PROPERTY_LANG_ACCESSOR_ONE'];
 
     const IBLOCK_ID = 1;
 
     public function getAccessorOneAttribute($value)
     {
-        return '!'.$value.'!';
+        return '!' . $value . '!';
     }
 
     public function getAccessorTwoAttribute()
     {
-        return $this['ID'].':'.$this['NAME'];
+        return $this['ID'] . ':' . $this['NAME'];
     }
 
     public function getAccessorThreeAttribute()

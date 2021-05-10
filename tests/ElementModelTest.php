@@ -11,14 +11,14 @@ use Mockery as m;
 
 class ElementModelTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         TestElement::$bxObject = m::mock('obj');
         TestElement::setCurrentLanguage('RU');
         ElementQuery::$cIblockObject = m::mock('cIblockObject');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         TestElement::destroyObject();
         m::close();
@@ -110,7 +110,7 @@ class ElementModelTest extends TestCase
             false
         );
         ElementQuery::$cIblockObject = $cIblockObject;
-        
+
         $bxObject = m::mock('obj');
         $bxObject->shouldReceive('GetList')->withAnyArgs()->once()->andReturn(m::self());
         $bxObject->shouldReceive('Fetch')->twice()->andReturn(
@@ -124,9 +124,9 @@ class ElementModelTest extends TestCase
             false
         );
         TestElement::$bxObject = $bxObject;
-        
+
         $element = new TestElement(1);
-        
+
         $expected = [
             'ID'         => 1,
             'NAME'       => 'John Doe',
@@ -136,7 +136,7 @@ class ElementModelTest extends TestCase
         ];
         $element->load();
         $this->assertEquals($expected, $element->fields);
-        
+
         // second call to make sure we do not query database twice.
         $element->load();
         $this->assertSame($expected, $element->fields);
@@ -155,7 +155,7 @@ class ElementModelTest extends TestCase
             false
         );
         ElementQuery::$cIblockObject = $cIblockObject;
-    
+
         $bxObject = m::mock('obj');
         $bxObject->shouldReceive('GetList')->withAnyArgs()->once()->andReturn(m::self());
         $bxObject->shouldReceive('Fetch')->twice()->andReturn(
@@ -307,7 +307,7 @@ class ElementModelTest extends TestCase
             ->with(1, TestElement::iblockId(), [
                 'FOO' => ['VALUE' => 'bar', 'DESCRIPTION' => 'baz'],
                 'TEST_LIST' => '1',
-                'TEST_LIST_MULTIPLE'=> [
+                'TEST_LIST_MULTIPLE' => [
                     ['VALUE' => 19, 'DESCRIPTION' => null],
                     ['VALUE' => 18, 'DESCRIPTION' => null],
                 ],
@@ -505,7 +505,7 @@ class ElementModelTest extends TestCase
         $this->assertTrue(isset($element['PROPERTY_LANG_ACCESSOR_ONE']));
         $this->assertSame('la_ru', $element['PROPERTY_LANG_ACCESSOR_ONE']);
     }
-    
+
     public function testItPlaysNiceWithOtherBitrixModels()
     {
         $elementObject = m::mock('element_object');
@@ -516,7 +516,7 @@ class ElementModelTest extends TestCase
 
         $userObject = m::mock('user_object');
         TestUser::$bxObject = $userObject;
-        
+
         $this->assertSame(TestElement::$bxObject, $elementObject);
         $this->assertSame(TestSection::$bxObject, $sectionObject);
         $this->assertSame(TestUser::$bxObject, $userObject);
