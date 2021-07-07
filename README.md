@@ -1,7 +1,5 @@
 [![Latest Stable Version](https://poser.pugx.org/ge1i0n/bitrix-models/v/stable.svg)](https://packagist.org/packages/ge1i0n/bitrix-models/)
 [![Total Downloads](https://img.shields.io/packagist/dt/ge1i0n/bitrix-models.svg?style=flat)](https://packagist.org/packages/ge1i0n/bitrix-models)
-[![Build Status](https://img.shields.io/travis/ge1i0n/bitrix-models/master.svg?style=flat)](https://travis-ci.org/ge1i0n/bitrix-models)
-
 
 # Bitrix models
 
