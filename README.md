@@ -14,7 +14,7 @@
 
 ## Установка
 
-1. ```composer require ge1i0n/bitrix-models```
+1. ```composer require Strong/bitrix-models```
 2. Регистрируем пакет в `init.php` - `Arrilot\BitrixModels\ServiceProvider::register();`
 
 ## Использование моделей Bitrix
