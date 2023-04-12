@@ -1,5 +1,5 @@
 {
-  "name": "ge1i0n/bitrix-models",
+  "name": "strong/bitrix-models",
   "license": "MIT",
   "keywords": [
     "bitrix",
@@ -11,7 +11,7 @@
       "email": "nekrasov.ilya90@gmail.com"
     }
   ],
-  "homepage": "https://github.com/ge1i0n/bitrix-models",
+  "homepage": "https://github.com/Strong/bitrix-models",
   "require": {
     "php": ">=8.1",
     "illuminate/support": "^10.0",
