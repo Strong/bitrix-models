@@ -102,7 +102,7 @@ class ElementQueryTest extends TestCase
 
     public function testGetListWithKeyByAndMissingKey()
     {
-        $this->setExpectedException('LogicException');
+        $this->expectException(\LogicException::class);
 
         $bxObject = m::mock('obj');
         $bxObject->shouldReceive('GetList')->with(['SORT' => 'ASC'], ['ACTIVE' => 'N', 'IBLOCK_ID' => 1], false, false, ['ID', 'NAME', 'IBLOCK_ID'])->once()->andReturn(m::self());
