@@ -14,13 +14,13 @@
   "homepage": "https://github.com/Strong/bitrix-models",
   "require": {
     "php": ">=8.1",
-    "illuminate/support": "^10.0",
-    "illuminate/pagination": "^10.0"
+    "illuminate/support": "^8.0",
+    "illuminate/pagination": "^8.0"
   },
   "suggest": {
     "arrilot/bitrix-blade": "To render pagination views using ->links()",
-    "illuminate/database": "10.* to use Eloquent models",
-    "illuminate/events": "10.* to use events in Eloquent models"
+    "illuminate/database": "8.* to use Eloquent models",
+    "illuminate/events": "8.* to use events in Eloquent models"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
